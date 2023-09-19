@@ -26,10 +26,7 @@ struct Veiculo{
 };
 
 
-vector<Cliente> clientes;
-vector<Veiculo> veiculos;
-
-void Incluir() {
+void Incluir(vector<Cliente>clientes) {
     Cliente cliente;
     cout << "Digite o CPF do cliente: ";
     cin >> cliente.cpf;
@@ -44,7 +41,7 @@ void Incluir() {
     cout << "O cliente foi incluído com sucesso!"<< endl<<endl;
 }
 
-void Excluir() {
+void Excluir(vector<Cliente>clientes) {
     string cpf;
     cout << "Digite o CPF do cliente a ser excluído: "<< endl;
     cin >> cpf;
@@ -59,7 +56,7 @@ void Excluir() {
     }
 }
 
-void Alterar() {
+void Alterar(vector<Cliente>clientes) {
     string cpf;
     cout << "Digite o CPF do cliente que deseja alterar: " << endl;
     cin >> cpf;
@@ -96,13 +93,13 @@ void Alterar() {
     cout << "Cliente não encontrado. "<< endl;
 }
 
-void Listar() {
+void Listar(vector<Cliente>clientes) {
     for (const auto& cliente : clientes) {
         cout << "CPF: " << cliente.cpf << endl<<"Nome: " << cliente.nome << endl <<"Data de Nascimento: " << cliente.dtnascimento << endl<<"CNH: " << cliente.cnh <<endl<<endl;
     }
 }
 
-void Localizar() {
+void Localizar(vector<Cliente>clientes) {
     string cpf;
     cout << "Digite o CPF do cliente que deseja localizar: "<< endl;
     cin >> cpf;
@@ -116,7 +113,7 @@ void Localizar() {
     cout << "Cliente não encontrado. "<<endl;
 }
 
-void menuCliente () {
+void menuCliente (vector<Cliente>clientes) {
 int menu;
 
 do {
@@ -126,19 +123,19 @@ cin >> menu;
 
 switch(menu) {
   case 1:        // Incluir
-    Incluir();
+    Incluir(clientes);
     break;
   case 2:         // Excluir
-    Excluir();
+    Excluir(clientes);
     break;
   case 3:        // Alterar (Apenas por CPF)
-    Alterar ();
+    Alterar (clientes);
     break;
   case 4:         // Listar
-    Listar ();
+    Listar (clientes);
     break;
   case 5:        // Localizar (por CPF)
-    Localizar ();
+    Localizar (clientes);
     break;
   case 0:        // Sair)
     cout << "Você saiu."<<endl;
@@ -151,7 +148,7 @@ switch(menu) {
 
 //SEGUNDA PARTE
 
-void IncluirVeiculo() {
+void IncluirVeiculo(vector<Veiculo> veiculos) {
     Veiculo veiculo;
     cout << "Digite o Renavam: "<<endl;
     cin >> veiculo.renavam;
@@ -169,7 +166,7 @@ void IncluirVeiculo() {
     cout << "Veículo incluído com sucesso. " << endl;
 }
 
-void ExcluirVeiculo() {
+void ExcluirVeiculo(vector<Veiculo> veiculos) {
     string placa;
     cout << "Digite a placa do veículo que deseja excluir: "<<endl;
     cin >> placa;
@@ -184,7 +181,7 @@ void ExcluirVeiculo() {
     }
 }
 
-void AlterarVeiculo() {
+void AlterarVeiculo(vector<Veiculo> veiculos) {
     string placa;
     cout << "Digite a placa do veículo que deseja alterar: "<<endl;
     cin >> placa;
@@ -238,13 +235,13 @@ void AlterarVeiculo() {
     cout << "Veículo não encontrado!" << endl;
 }
 
-void ListarVeiculos() {
+void ListarVeiculos(vector<Veiculo> veiculos) {
     for (const auto& veiculo : veiculos) {
         cout << "Renavam: " << veiculo.renavam << endl<<"Placa: " << veiculo.placadoveiculo <<endl<< "Data e hora de retirada: " << veiculo.data_hora_retirada <<endl<< "Data e hora de entrega: " << veiculo.data_hora_entrega << endl<<"Loja de retirada: " << veiculo.loja_retirada << "."<<endl<<endl;
     }
 }
 
-void LocalizarVeiculo() {
+void LocalizarVeiculo(vector<Veiculo> veiculos) {
     string placa;
     cout << "Digite a placa do veículo que deseja localizar: "<<endl;
     cin >> placa;
@@ -258,7 +255,7 @@ void LocalizarVeiculo() {
     cout << "Veículo não encontrado!" << endl;
 }
 
-void menuVeiculos() {
+void menuVeiculos(vector<Veiculo> veiculos) {
     int opcao;
 
     do {
@@ -274,19 +271,19 @@ void menuVeiculos() {
 
         switch (opcao) {
         case 1:
-            IncluirVeiculo();
+            IncluirVeiculo(veiculos);
             break;
         case 2:
-            ExcluirVeiculo();
+            ExcluirVeiculo(veiculos);
             break;
         case 3:
-            AlterarVeiculo();
+            AlterarVeiculo(veiculos);
             break;
         case 4:
-            ListarVeiculos();
+            ListarVeiculos(veiculos);
             break;
         case 5:
-            LocalizarVeiculo();
+            LocalizarVeiculo(veiculos);
             break;
         case 0:
             cout << "Encerrando..." << endl;
@@ -303,6 +300,8 @@ void menuVeiculos() {
 
 int main() {
     int opcao;
+    vector<Cliente> clientes;
+    vector<Veiculo> veiculos;
     do {
         system("clear");
         cout << "LocaFINA S/A" << endl;
@@ -314,10 +313,10 @@ int main() {
 
         switch (opcao) {
         case 1:
-            menuCliente();
+            menuCliente(clientes);
             break;
         case 2:
-            menuVeiculos();
+            menuVeiculos(veiculos);
             break;
         case 0:
             cout << "Encerrando o programa..." << endl;
